@@ -1,0 +1,159 @@
+@import "tailwindcss";
+@source "../src";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-ember: var(--ember);
+  --color-ember-glow: var(--ember-glow);
+
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Charcoal black + ember orange */
+  --background: oklch(0.14 0.005 270);
+  --foreground: oklch(0.97 0.005 80);
+
+  --surface: oklch(0.18 0.008 270);
+  --surface-elevated: oklch(0.22 0.01 270);
+
+  --card: oklch(0.18 0.008 270);
+  --card-foreground: oklch(0.97 0.005 80);
+  --popover: oklch(0.18 0.008 270);
+  --popover-foreground: oklch(0.97 0.005 80);
+
+  --primary: oklch(0.72 0.2 45);
+  --primary-foreground: oklch(0.14 0.005 270);
+
+  --ember: oklch(0.72 0.2 45);
+  --ember-glow: oklch(0.78 0.18 55);
+
+  --secondary: oklch(0.24 0.01 270);
+  --secondary-foreground: oklch(0.97 0.005 80);
+  --muted: oklch(0.22 0.008 270);
+  --muted-foreground: oklch(0.68 0.015 270);
+  --accent: oklch(0.72 0.2 45);
+  --accent-foreground: oklch(0.14 0.005 270);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.97 0 0);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.72 0.2 45);
+
+  --sidebar: oklch(0.18 0.008 270);
+  --sidebar-foreground: oklch(0.97 0.005 80);
+  --sidebar-primary: oklch(0.72 0.2 45);
+  --sidebar-primary-foreground: oklch(0.14 0.005 270);
+  --sidebar-accent: oklch(0.24 0.01 270);
+  --sidebar-accent-foreground: oklch(0.97 0.005 80);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.72 0.2 45);
+
+  --chart-1: oklch(0.72 0.2 45);
+  --chart-2: oklch(0.6 0.18 30);
+  --chart-3: oklch(0.5 0.12 50);
+  --chart-4: oklch(0.45 0.05 270);
+  --chart-5: oklch(0.8 0.1 60);
+}
+
+.dark {
+  --background: oklch(0.14 0.005 270);
+  --foreground: oklch(0.97 0.005 80);
+}
+
+@layer base {
+  @font-face {
+    font-family: "Oswald";
+    src: url("https://fonts.gstatic.com/s/oswald/v53/TK3iWkUHHAIjg752Fz8Ghe4.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Inter";
+    src: url("https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuLyfMZg.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--ember);
+    color: var(--primary-foreground);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+  }
+
+  .text-gradient-ember {
+    background: linear-gradient(135deg, var(--ember-glow), var(--ember));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, oklch(1 0 0 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .ember-glow {
+    box-shadow: 0 0 40px -8px oklch(0.72 0.2 45 / 0.5);
+  }
+
+  .ember-text-glow {
+    text-shadow: 0 0 30px oklch(0.72 0.2 45 / 0.4);
+  }
+}
